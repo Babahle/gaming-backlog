@@ -1,4 +1,4 @@
-enum GameStates {
+export enum GameStates {
     "NotStarted",
     "InProgress",
     "Finished",

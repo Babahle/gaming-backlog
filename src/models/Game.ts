@@ -1,3 +1,5 @@
+import {GameStates} from "../enums/GameStates.ts";
+
 export class Game {
     public name: string;
     public platform: string;
