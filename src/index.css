@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        font-family: 'Nunito', sans-serif
+    }
+}
 
 body {
     background: #1f1f1f;
@@ -12,10 +17,4 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
-}
-
-p, span {
-    font-family: 'Nunito', sans-serif;
-    margin: 0;
 }

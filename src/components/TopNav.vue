@@ -11,7 +11,11 @@ function handleClick() {
 </script>
 
 <template>
-  <Logo/>
-  <Button button-label="Add Game" :selectedColour="Colours.Secondary" @button-clicked="handleClick"/>
+
+  <div class="top-nav flex flex-row justify-between items-center px-3 py-1">
+    <Logo/>
+    <Button button-label="Add Game" :selectedColour="Colours.Secondary" @button-clicked="handleClick"/>
+  </div>
+
 
 </template>
