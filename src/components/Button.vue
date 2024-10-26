@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {Colours} from "../enums/Colours.ts";
-import {computed, ref} from "vue";
+import {computed} from "vue";
 import {ButtonColour} from "../models/ButtonColour.ts";
 
 const emits = defineEmits(['button-clicked']);
@@ -18,8 +18,8 @@ const buttonClassList = computed(() => {
     buttonColourInstance.textColour,
     "font-bold",
     "py-3",
-    "px-6",
-    "rounded-full",
+    "px-10",
+    "rounded-md",
     buttonColourInstance.hoverTextColour,
     "transform",
     "transition-all",
