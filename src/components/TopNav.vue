@@ -13,4 +13,5 @@ function handleClick() {
 <template>
   <Logo/>
   <Button button-label="Add Game" :selectedColour="Colours.Secondary" @button-clicked="handleClick"/>
+
 </template>

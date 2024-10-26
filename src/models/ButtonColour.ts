@@ -1,41 +1,41 @@
 import {Colours} from "../enums/Colours.ts";
 
 export class ButtonColour {
-    public backgroundColor: string;
-    public hoverColor: string;
-    public focusColor: string
-    public textColor: string;
+    public backgroundColour: string;
+    public hoverColour: string;
+    public hoverTextColour: string;
+    public textColour: string;
 
 
     constructor(colour: Colours) {
 
         switch (colour) {
             case Colours.Primary: {
-                this.backgroundColor = 'bg-primary';
-                this.hoverColor = 'hover:bg-primary-2';
-                this.focusColor = 'focus:ring-primary-3';
-                this.textColor = 'text-background';
+                this.backgroundColour = 'bg-primary';
+                this.hoverColour = 'hover:bg-primary-2';
+                this.textColour = 'text-background';
+                this.hoverTextColour = 'hover:text-background';
                 break;
             }
             case Colours.Secondary: {
-                this.backgroundColor = 'bg-secondary';
-                this.hoverColor = 'hover:bg-secondary-2';
-                this.focusColor = 'focus:ring-secondary-3';
-                this.textColor = 'text-text';
+                this.backgroundColour = 'bg-secondary';
+                this.hoverColour = 'hover:bg-secondary-2';
+                this.textColour = 'text-text';
+                this.hoverTextColour = 'hover:text-text';
                 break;
             }
             case Colours.Accent: {
-                this.backgroundColor = 'bg-accent';
-                this.hoverColor = 'hover:bg-accent-2';
-                this.focusColor = 'focus:ring-accent-3';
-                this.textColor = 'text-background';
+                this.backgroundColour = 'bg-accent';
+                this.hoverColour = 'hover:bg-accent-2';
+                this.textColour = 'text-background';
+                this.hoverTextColour = 'hover:text-background';
                 break;
             }
             default:
-                this.backgroundColor = 'bg-primary'; // or a sensible fallback
-                this.hoverColor = 'hover:bg-primary'; // or a sensible fallback
-                this.focusColor = 'focus:ring-primary'; // or a sensible fallback
-                this.textColor = 'text-background';
+                this.backgroundColour = 'bg-primary'; // or a sensible fallback
+                this.hoverColour = 'hover:bg-primary'; // or a sensible fallback
+                this.textColour = 'text-background';
+                this.hoverTextColour = 'hover:text-background';
                 console.warn(`Unknown colour: ${colour}`);
         }
     }

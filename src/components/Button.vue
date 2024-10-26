@@ -10,25 +10,25 @@ const props = defineProps<{
   buttonLabel: string;
 }>();
 
-const buttonColourInstance = ref(new ButtonColour(props.selectedColour));
+const buttonColourInstance = new ButtonColour(props.selectedColour);
 const buttonClassList = computed(() => {
   return [
-    'px-6',
-    'py-2',
-    'font-medium',
-    'tracking-wide',
-    'text-text',
-    'capitalize',
-    'transition-colors',
-    'duration-300',
-    'transform',
-    buttonColourInstance.value.backgroundColor,
-    'rounded-lg',
-    buttonColourInstance.value.hoverColor,
-    'focus:outline-none',
-    'focus:ring',
-    buttonColourInstance.value.focusColor,
-    'focus:ring-opacity-80',
+    buttonColourInstance.backgroundColour,
+    buttonColourInstance.hoverColour,
+    buttonColourInstance.textColour,
+    "font-bold",
+    "py-3",
+    "px-6",
+    "rounded-full",
+    buttonColourInstance.hoverTextColour,
+    "transform",
+    "transition-all",
+    "duration-500",
+    "ease-in-out",
+    "hover:scale-110",
+    "hover:brightness-110",
+    "hover:animate-pulse",
+    "active:animate-bounce",
   ];
 });
 
