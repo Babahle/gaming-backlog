@@ -1,6 +1,11 @@
 <script setup lang="ts">
 
 import GameCard from "../components/GameCard.vue";
+import {Platforms} from "../enums/Platforms.ts";
+import {GameStates} from "../enums/GameStates.ts";
+import {Game} from "../models/Game.ts";
+
+const game: Game = new Game("Hades", Platforms.PC, GameStates.NotStarted, "");
 </script>
 
 <template>
@@ -10,7 +15,7 @@ import GameCard from "../components/GameCard.vue";
   </div>
 
   <div class="flex flex-col items-center justify-center">
-    <GameCard/>
+    <GameCard :gameObject="game"/>
   </div>
 </template>
 
