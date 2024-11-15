@@ -1,11 +1,6 @@
 <script setup lang="ts">
+import SideBar from "../components/SideBar.vue";
 
-import GameCard from "../components/GameCard.vue";
-import {Platforms} from "../enums/Platforms.ts";
-import {GameStates} from "../enums/GameStates.ts";
-import {Game} from "../models/Game.ts";
-
-const game: Game = new Game("Hades", Platforms.PC, GameStates.NotStarted, "");
 </script>
 
 <template>
@@ -14,9 +9,7 @@ const game: Game = new Game("Hades", Platforms.PC, GameStates.NotStarted, "");
     <p class="">Track your progress, categorise your collection, and achieve more with every game</p>
   </div>
 
-  <div class="flex flex-col items-center justify-center">
-    <GameCard :gameObject="game"/>
-  </div>
+  <SideBar/>
 </template>
 
 <style scoped>
