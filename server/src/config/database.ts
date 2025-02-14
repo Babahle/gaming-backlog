@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 class Database {
     static async connect(): Promise<typeof mongoose> {
         try {
-            const connection = await mongoose.connect('mongodb://localhost:27017/blogdb');
+            const connection = await mongoose.connect('mongodb://localhost:27017/bookstore');
             console.log('MongoDB connected successfully!');
             return connection;
         } catch (error) {

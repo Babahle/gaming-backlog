@@ -1,8 +1,9 @@
 <script setup lang="ts">
 
-import {Colours} from "../enums/Colours.ts";
+import {Colours} from "../enums/Colours";
 import {computed} from "vue";
-import {ButtonColour} from "../models/ButtonColour.ts";
+import {ButtonColour} from "../models/ButtonColour";
+import {animate} from "motion";
 
 const emits = defineEmits(['button-clicked']);
 const props = defineProps<{
@@ -36,14 +37,28 @@ function emitButtonClick() {
   emits('button-clicked');
 }
 
+async function onEnter(el, onComplete) {
+  console.log("onEnter")
+  await animate(el, {opacity: 1, duration: 1000});
+  onComplete();
+  console.log("onComplete")
+}
+
 
 </script>
 
 <template>
+  <Transition appear @enter="onEnter" :css="false">
+    <h1>Hello There</h1>
+  </Transition>
+
   <button @click="emitButtonClick" :class="buttonClassList">
     {{ buttonLabel }}
   </button>
 </template>
 
 <style scoped>
+h1 {
+  opacity: 0;
+}
 </style>

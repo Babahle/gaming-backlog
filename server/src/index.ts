@@ -1,6 +1,8 @@
-import express, {Express, Request, Response} from "express";
+import express, {Express} from "express";
 import Database from "./config/database.js";
 import gameRoutes from "./routes/GameRoutes.js";
+import dotenv from "dotenv";
+
 
 class Server {
     private app: Express;
@@ -26,6 +28,7 @@ class Server {
     }
 
     public start(): void {
+        dotenv.config();
         this.app.listen(this.port, () => {
             console.log(`Server running on port ${this.port}`);
         });
