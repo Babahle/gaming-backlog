@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Button from "./Button.vue";
-import {Colours} from "../enums/Colours.ts";
-import {Game} from "../models/Game.ts";
+import {Colours} from "../enums/Colours";
+import {Game} from "../models/Game";
 
 defineProps<{
   gameObject: Game

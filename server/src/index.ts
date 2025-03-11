@@ -1,13 +1,39 @@
-import express, {Express, Request, Response} from "express";
+import express, {Express} from "express";
+import Database from "./config/database.js";
+import gameRoutes from "./routes/GameRoutes.js";
+import dotenv from "dotenv";
 
-const port = process.env.PORT || 3000;
 
-const app: Express = express();
+class Server {
+    private app: Express;
+    private port = process.env.PORT || 3000;
 
-app.get("/", (req: Request, res: Response) => {
-    res.send("Hello World!!!!!!");
-})
+    constructor() {
+        this.app = express();
+        this.configureMiddleware();
+        this.connectDatabase();
+        this.setupRoutes();
+    }
 
-app.listen(port, () => {
-    console.log("Server started on port " + port);
-})
+    private configureMiddleware(): void {
+        this.app.use(express.json());
+    }
+
+    private async connectDatabase(): Promise<void> {
+        await Database.connect();
+    }
+
+    private setupRoutes(): void {
+        this.app.use('/games', gameRoutes);
+    }
+
+    public start(): void {
+        dotenv.config();
+        this.app.listen(this.port, () => {
+            console.log(`Server running on port ${this.port}`);
+        });
+    }
+}
+
+const server = new Server();
+server.start();
