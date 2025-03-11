@@ -6,13 +6,15 @@ export class Game implements IGame {
     public platform: string;
     public state: string;
     public imageURL: string;
+    public id: string;
 
 
-    constructor(name: string, platform: string, state: string, imageURL?: string) {
+    constructor(name: string, platform: string, state: string, id?: string, imageURL?: string) {
         this.name = name;
         this.platform = platform;
         this.state = state;
         this.imageURL = imageURL;
+        this.id = id;
     }
 
 }

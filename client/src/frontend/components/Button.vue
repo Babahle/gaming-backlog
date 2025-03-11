@@ -48,10 +48,6 @@ async function onEnter(el, onComplete) {
 </script>
 
 <template>
-  <Transition appear @enter="onEnter" :css="false">
-    <h1>Hello There</h1>
-  </Transition>
-
   <button @click="emitButtonClick" :class="buttonClassList">
     {{ buttonLabel }}
   </button>

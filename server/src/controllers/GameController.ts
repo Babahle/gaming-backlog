@@ -11,7 +11,7 @@ export default class GameController {
      * @returns A Promise that resolves to the Express response.
      */
     public static async createGames(req: Request, res: Response): Promise<Response> {
-        let {name, platform, state, imageURL} = req.body;
+        let {name, platform, state} = req.body;
 
         if (!name || !platform) {
             return res.status(400).json({error: 'Game name and platform are required'});
@@ -23,11 +23,27 @@ export default class GameController {
             await gameDoc.save();
 
             console.log('Game inserted successfully');
-
             return res.status(200).json({message: "Game Inserted Successfully", game: game});
         } catch (err) {
-            console.error('Error inserting books:', err);
-            return res.status(500).send({message: 'Error inserting books:', error: err});
+            console.error('Error inserting game:', err);
+            return res.status(500).send({message: 'Error inserting game:', error: err});
+        }
+    }
+
+    /**
+     * Retrieves all games from the database.
+     * @param req - The Express request object.
+     * @param res - The Express response object.
+     * @returns A Promise that resolves to an array of `Game` objects.
+     */
+    public static async getAllGames(req: Request, res: Response): Promise<Game[]> {
+        try {
+            const games = Array.from(await GameModel.find());
+            return games.map(game => {
+                return new Game(game.name, game.platform, game.state, game.id, game.imageURL);
+            });
+        } catch (err) {
+            console.log(`Error getting games: ${err}`);
         }
     }
 
