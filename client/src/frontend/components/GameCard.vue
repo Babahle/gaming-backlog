@@ -6,12 +6,11 @@ import {Game} from "../models/Game.ts";
 defineProps<{
   gameObject: Game
 }>();
-
-
 </script>
 
 <template>
-  <div class="flex flex-col card bg-cardBackground w-[16.5rem] h-fit rounded-md hover:border hover:border-primary hover:cursor-pointer">
+  <div
+      class="flex flex-col card bg-cardBackground w-[13.5rem] h-fit rounded-md hover:border hover:border-primary hover:cursor-pointer">
     <div class="card_aside w-full rounded-md">
       <img class="rounded-t-md"
            src="https://image.api.playstation.com/vulcan/ap/rnd/202104/0517/9AcM3vy5t77zPiJyKHwRfnNT.png">
