@@ -11,14 +11,14 @@ export default class GameController {
      * @returns A Promise that resolves to the Express response.
      */
     public static async createGames(req: Request, res: Response): Promise<Response> {
-        let {name, platform, state} = req.body;
+        let {name, platform, state, imageURL} = req.body;
 
         if (!name || !platform) {
             return res.status(400).json({error: 'Game name and platform are required'});
         }
 
         try {
-            const game = new Game(name, platform, state);
+            const game = new Game(name, platform, state, undefined, imageURL);
             const gameDoc = new GameModel(game);
             await gameDoc.save();
 

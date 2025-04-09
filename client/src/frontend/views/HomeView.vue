@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import SideBar from "../components/SideBar.vue";
+import {ref, watchEffect} from "vue";
+import GameCard from "../components/GameCard.vue";
+import {Game} from "../models/Game";
+import {Constants} from "../constants/Constants";
 
+let games = ref([]);
+watchEffect(async () => {
+  const response = await fetch(Constants.API_URL);
+  games.value = await response.json();
+});
 </script>
 
 <template>
@@ -9,9 +18,17 @@ import SideBar from "../components/SideBar.vue";
     <p class="">Track your progress, categorise your collection, and achieve more with every game</p>
   </div>
 
-  <SideBar/>
+  <div class="flex flex-row items-start h-screen">
+    <SideBar/>
+    <div class="games-container m-4" v-if="games.length > 0">
+      <div class="grid grid-cols-5 gap-6 auto-rows-auto">
+        <GameCard v-for="game in games" :game-object="new Game(game.name, game.platform, game.state, game.imageURL)"/>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+
 
 </style>

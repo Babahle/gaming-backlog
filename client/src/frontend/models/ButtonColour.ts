@@ -1,4 +1,4 @@
-import {Colours} from "../enums/Colours.ts";
+import {Colours} from "../enums/Colours";
 
 export class ButtonColour {
     public backgroundColour: string;
