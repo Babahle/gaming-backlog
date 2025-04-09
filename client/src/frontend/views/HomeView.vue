@@ -9,7 +9,6 @@ let games = ref([]);
 watchEffect(async () => {
   const response = await fetch(Constants.API_URL);
   games.value = await response.json();
-  console.log(games.value);
 });
 </script>
 
