@@ -4,6 +4,7 @@ import {ref, watchEffect} from "vue";
 import GameCard from "../components/GameCard.vue";
 import {Game} from "../models/Game";
 import {Constants} from "../constants/Constants";
+import GameCreationModal from "../components/GameCreationModal.vue";
 
 let games = ref([]);
 watchEffect(async () => {
@@ -17,6 +18,8 @@ watchEffect(async () => {
     <h1 class="font-bold text-heading-1 my-4 text-primary">Own Your Gaming Journey</h1>
     <p class="">Track your progress, categorise your collection, and achieve more with every game</p>
   </div>
+
+  <GameCreationModal></GameCreationModal>
 
   <div class="flex flex-row items-start h-screen">
     <SideBar/>
