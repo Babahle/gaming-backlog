@@ -9,6 +9,7 @@ module.exports = {
                 'text': '#EBE9FC',
                 'background': '#1f1f1f',
                 'cardBackground': '#292929',
+                'modalBackground': 'rgba(41, 41, 41, 0.7)',
                 'primary': '#EE4266',
                 'primary-2': '#B9334F',
                 'primary-3': '#7B1C30',

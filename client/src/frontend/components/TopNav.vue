@@ -2,11 +2,14 @@
 
 import Logo from "./Logo.vue";
 import Button from "./Button.vue";
-import {Colours} from "../enums/Colours.ts";
+import {Colours} from "../enums/Colours";
+import {ref} from "vue";
+import GameCreationModal from "./GameCreationModal.vue";
 
+const modalActive = ref(false);
 
-function handleClick() {
-  console.log("Button clocked")
+function toggleModal() {
+  modalActive.value = !modalActive.value;
 }
 </script>
 
@@ -14,8 +17,8 @@ function handleClick() {
 
   <div class="top-nav flex flex-row justify-between items-center px-3 py-1">
     <Logo/>
-    <Button button-label="Add Game" :selectedColour="Colours.Secondary" @button-clicked="handleClick"/>
+    <Button button-label="Add Game" :selectedColour="Colours.Secondary" @button-clicked="toggleModal"/>
   </div>
 
-
+    <GameCreationModal :modalActive="modalActive"></GameCreationModal>
 </template>
