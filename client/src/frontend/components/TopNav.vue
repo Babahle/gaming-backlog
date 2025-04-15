@@ -5,6 +5,8 @@ import Button from "./Button.vue";
 import {Colours} from "../enums/Colours";
 import {ref} from "vue";
 import GameCreationModal from "./GameCreationModal.vue";
+import {AnimatePresence, MotionConfig} from "motion-v"
+
 
 const modalActive = ref(false);
 
@@ -20,5 +22,9 @@ function toggleModal() {
     <Button button-label="Add Game" :selectedColour="Colours.Secondary" @button-clicked="toggleModal"/>
   </div>
 
-    <GameCreationModal :modalActive="modalActive"></GameCreationModal>
+ <MotionConfig :transition="{ duration: 0.5 }">
+   <AnimatePresence :mode="'wait'">
+     <GameCreationModal :modalActive="modalActive" @closeModal="toggleModal"></GameCreationModal>
+   </AnimatePresence>
+ </MotionConfig>
 </template>

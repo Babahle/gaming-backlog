@@ -22,14 +22,6 @@ const buttonClassList = computed(() => {
     "px-10",
     "rounded-md",
     buttonColourInstance.hoverTextColour,
-    "transform",
-    "transition-all",
-    "duration-500",
-    "ease-in-out",
-    "hover:scale-110",
-    "hover:brightness-110",
-    "hover:animate-pulse",
-    "active:animate-bounce",
   ];
 });
 
@@ -54,7 +46,4 @@ async function onEnter(el, onComplete) {
 </template>
 
 <style scoped>
-h1 {
-  opacity: 0;
-}
 </style>
