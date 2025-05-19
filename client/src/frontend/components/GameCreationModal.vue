@@ -2,10 +2,12 @@
 import {ref} from "vue";
 import {motion, AnimatePresence} from "motion-v"
 import {Constants} from "../constants/Constants";
+import Button from "./Button.vue";
+import {Colours} from "../enums/Colours";
 
 let name = ref("");
 let imageURL = ref("");
-let state = ref("");
+let state = ref("notPlaying");
 let platform = ref("");
 
 
@@ -17,6 +19,10 @@ const props = defineProps<{
 
 function emitCloseModal() {
   emits('closeModal');
+}
+
+function submitForm() {
+  console.log(`name - ${name.value}, imageURL - ${imageURL.value}, state - ${state.value}, platform - ${platform.value}`)
 }
 
 </script>
@@ -48,7 +54,7 @@ function emitCloseModal() {
 
               <div class="m-4">
                 <label for="image"
-                       class="my-1  block text-sm font-medium text-gray-700 dark:text-gray-100">Image</label>
+                       class="my-1  block text-sm font-medium text-gray-700 dark:text-gray-100">Image Link</label>
                 <input id="image" v-model="imageURL" class="bg-background border border-primary rounded-md p-2">
               </div>
 
@@ -60,19 +66,19 @@ function emitCloseModal() {
                 </label>
                 <div class="flex items-center space-x-6">
                   <div class="flex items-center">
-                    <input type="radio" name="radio1" id="radioButton1" class="h-5 w-5" v-model="state"/>
+                    <input type="radio" name="state" id="radioButton1" value="playing" class="h-5 w-5" v-model="state"/>
                     <label for="radioButton1" class="pl-3 text-base font-medium text-text">
                       Playing
                     </label>
                   </div>
                   <div class="flex items-center">
-                    <input type="radio" name="radio1" id="radioButton2" class="h-5 w-5" v-model="state"/>
+                    <input type="radio" name="state" id="radioButton2" value="notStarted" class="h-5 w-5" v-model="state"/>
                     <label for="radioButton2" class="pl-3 text-base font-medium text-text">
                       Not Started
                     </label>
                   </div>
                   <div class="flex items-center">
-                    <input type="radio" name="radio1" id="radioButton2" class="h-5 w-5" v-model="state"/>
+                    <input type="radio" name="state" id="radioButton2" value="complete" class="h-5 w-5" v-model="state"/>
                     <label for="radioButton2" class="pl-3 text-base font-medium text-text">
                       Complete
                     </label>
@@ -87,27 +93,27 @@ function emitCloseModal() {
                 </label>
                 <div class="flex items-center space-x-6">
                   <div class="flex items-center">
-                    <input type="radio" name="radio1" id="radioButton1" class="h-5 w-5" v-model="platform"/>
+                    <input type="radio" name="platform" id="platformRadioButton1" class="h-5 w-5" v-model="platform"/>
                     <label for="radioButton1" class="pl-3 text-base font-medium text-text">
                       Playstation
                     </label>
                   </div>
                   <div class="flex items-center">
-                    <input type="radio" name="radio1" id="radioButton2" class="h-5 w-5" v-model="platform"/>
+                    <input type="radio" name="platform" id="platformRadioButton2" class="h-5 w-5" v-model="platform"/>
                     <label for="radioButton2" class="pl-3 text-base font-medium text-text">
                       Xbox
                     </label>
                   </div>
 
                   <div class="flex items-center">
-                    <input type="radio" name="radio1" id="radioButton2" class="h-5 w-5" v-model="platform"/>
+                    <input type="radio" name="platform" id="platformRadioButton3" class="h-5 w-5" v-model="platform"/>
                     <label for="radioButton2" class="pl-3 text-base font-medium text-text">
                       PC
                     </label>
                   </div>
 
                   <div class="flex items-center">
-                    <input type="radio" name="radio1" id="radioButton2" class="h-5 w-5" v-model="platform"/>
+                    <input type="radio" name="platform" id="platformRadioButton4" class="h-5 w-5" v-model="platform"/>
                     <label for="radioButton2" class="pl-3 text-base font-medium text-text">
                       Nintendo
                     </label>
@@ -119,6 +125,10 @@ function emitCloseModal() {
 
           </div>
         </form>
+
+        <div>
+          <Button :selected-colour="Colours.Primary" button-label="Save" @button-clicked="submitForm"/>
+        </div>
       </motion.div>
     </AnimatePresence>
   </motion.div>
