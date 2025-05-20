@@ -2,6 +2,7 @@ import express, {Express} from "express";
 import Database from "./config/database.js";
 import gameRoutes from "./routes/GameRoutes.js";
 import dotenv from "dotenv";
+import cors from 'cors';
 
 
 class Server {
@@ -10,6 +11,7 @@ class Server {
 
     constructor() {
         this.app = express();
+        this.app.use(cors());
         this.configureMiddleware();
         this.connectDatabase();
         this.setupRoutes();

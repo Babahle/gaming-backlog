@@ -4,11 +4,12 @@ import {ref, watchEffect} from "vue";
 import GameCard from "../components/GameCard.vue";
 import {Game} from "../models/Game";
 import {Constants} from "../constants/Constants";
+import axios from "axios";
 
 let games = ref([]);
 watchEffect(async () => {
-  const response = await fetch(Constants.API_URL);
-  games.value = await response.json();
+  const response = await axios.get(Constants.API_URL);
+  games.value = await response.data;
 });
 </script>
 
