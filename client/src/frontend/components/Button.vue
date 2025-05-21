@@ -40,7 +40,7 @@ async function onEnter(el, onComplete) {
 </script>
 
 <template>
-  <button @click="emitButtonClick" :class="buttonClassList">
+  <button @click="emitButtonClick" :class="buttonClassList" type="submit">
     {{ buttonLabel }}
   </button>
 </template>

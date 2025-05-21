@@ -11,7 +11,7 @@ class Server {
 
     constructor() {
         this.app = express();
-        this.app.use(cors());
+        this.configureCors();
         this.configureMiddleware();
         this.connectDatabase();
         this.setupRoutes();
@@ -34,6 +34,15 @@ class Server {
         this.app.listen(this.port, () => {
             console.log(`Server running on port ${this.port}`);
         });
+    }
+
+    private configureCors() {
+        this.app.use(cors({
+            origin: ['http://localhost:3000', 'http://localhost:5173'],
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization'],
+            credentials: true
+        }));
     }
 }
 
