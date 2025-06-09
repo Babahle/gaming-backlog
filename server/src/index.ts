@@ -7,7 +7,7 @@ import cors from 'cors';
 
 class Server {
     private app: Express;
-    private port = process.env.PORT || 3000;
+    private port: string | number = process.env.PORT || 3000;
 
     constructor() {
         this.app = express();
@@ -27,6 +27,7 @@ class Server {
 
     private setupRoutes(): void {
         this.app.use('/games', gameRoutes);
+        this.app.use('/', gameRoutes);
     }
 
     public start(): void {
@@ -38,7 +39,7 @@ class Server {
 
     private configureCors() {
         this.app.use(cors({
-            origin: ['http://localhost:3000', 'http://localhost:5173'],
+            origin: ['http://localhost:3000', 'http://localhost:5173', 'http://127.0.0.1:27017'],
             methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
             allowedHeaders: ['Content-Type', 'Authorization'],
             credentials: true
