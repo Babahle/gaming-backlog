@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {useMotionValue, motion, useAnimate} from "motion-v"
+import {MotionValue} from "motion";
 const props = defineProps<{
   id: string,
   name: string,
@@ -6,6 +8,10 @@ const props = defineProps<{
   isChecked: boolean,
   label: string,
 }>();
+const [scope, animate] = useAnimate();
+const buttonColour: MotionValue<string> = useMotionValue('#EE4266');
+
+//TODO: add animation handling for buttons when the click event handler is called
 
 function handleChange() {
 
@@ -25,8 +31,8 @@ function handleChange() {
         @change="handleChange"
         class="hidden"
     />
-    <span class="ml-2 select-none inline-block px-2 py-2 cursor-pointer rounded-sm border-primary border"
-          :class="isChecked ?'bg-primary' : 'bg-none' ">{{ label }}</span>
+    <motion.span class="ml-2 select-none inline-block px-2 py-2 cursor-pointer rounded-sm border-primary border"
+          :class="isChecked ?'bg-primary' : 'bg-none' ">{{ label }}</motion.span>
   </label>
 </template>
 
