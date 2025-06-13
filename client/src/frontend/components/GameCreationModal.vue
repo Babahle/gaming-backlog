@@ -7,11 +7,13 @@ import {Colours} from "../enums/Colours";
 import {GameStates} from "../enums/GameStates";
 import {Platforms} from "../enums/Platforms";
 import axios from "axios";
+import BaseRadioButton from "./BaseRadioButton.vue";
 
 let name = ref("");
 let imageURL = ref("");
 let state = ref(GameStates.NotStarted);
 let platform = ref(Platforms.Playstation);
+
 
 
 const emits = defineEmits(['closeModal']);
@@ -79,50 +81,18 @@ function submitForm() {
               <!-- Game State selection -->
               <div class="game-state-container m-4">
                 <label class="mb-3 block text-base font-medium text-text">State</label>
-                <div class="flex items-center space-x-6">
-                  <div class="flex items-center">
-                    <input type="radio" name="state" id="state-in-progress" :value="GameStates.InProgress"
-                           class="h-5 w-5" v-model="state"/>
-                    <label for="state-in-progress" class="pl-3 text-base font-medium text-text">Playing</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="radio" name="state" id="state-not-started" :value="GameStates.NotStarted"
-                           class="h-5 w-5" v-model="state"/>
-                    <label for="state-not-started" class="pl-3 text-base font-medium text-text">Not Started</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="radio" name="state" id="state-finished" :value="GameStates.Finished" class="h-5 w-5"
-                           v-model="state"/>
-                    <label for="state-finished" class="pl-3 text-base font-medium text-text">Complete</label>
-                  </div>
-                </div>
+                <BaseRadioButton v-model="state" name="state" :value="GameStates.NotStarted"/>
+                <BaseRadioButton v-model="state" name="state" :value="GameStates.InProgress"/>
+                <BaseRadioButton v-model="state" name="state" :value="GameStates.Finished"/>
               </div>
 
               <!-- Platform selection -->
               <div class="game-platform-container m-4">
                 <label class="mb-3 block text-base font-medium text-text">Platform</label>
-                <div class="flex items-center space-x-6">
-                  <div class="flex items-center">
-                    <input type="radio" name="platform" id="platform-playstation" :value="Platforms.Playstation"
-                           class="h-5 w-5" v-model="platform"/>
-                    <label for="platform-playstation" class="pl-3 text-base font-medium text-text">Playstation</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="radio" name="platform" id="platform-xbox" :value="Platforms.Xbox" class="h-5 w-5"
-                           v-model="platform"/>
-                    <label for="platform-xbox" class="pl-3 text-base font-medium text-text">Xbox</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="radio" name="platform" id="platform-pc" :value="Platforms.PC" class="h-5 w-5"
-                           v-model="platform"/>
-                    <label for="platform-pc" class="pl-3 text-base font-medium text-text">PC</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="radio" name="platform" id="platform-nintendo" :value="Platforms.Nintendo"
-                           class="h-5 w-5" v-model="platform"/>
-                    <label for="platform-nintendo" class="pl-3 text-base font-medium text-text">Nintendo</label>
-                  </div>
-                </div>
+                <BaseRadioButton v-model="platform" name="platform" :value="Platforms.Playstation"/>
+                <BaseRadioButton v-model="platform" name="platform" :value="Platforms.Xbox"/>
+                <BaseRadioButton v-model="platform" name="platform" :value="Platforms.Nintendo"/>
+                <BaseRadioButton v-model="platform" name="platform" :value="Platforms.PC" />
               </div>
             </div>
 

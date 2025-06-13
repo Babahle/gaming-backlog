@@ -1,29 +1,32 @@
 <script setup lang="ts">
-import {useMotionValue, motion, useAnimate} from "motion-v"
-import {MotionValue} from "motion";
+import {motion} from "motion-v"
+import {computed, ComputedRef, ModelRef} from "vue";
+
 const props = defineProps<{
-  id: string,
   name: string,
   value: string,
-  isChecked: boolean,
-  label: string,
 }>();
-const [scope, animate] = useAnimate();
-const buttonColour: MotionValue<string> = useMotionValue('#EE4266');
 
-//TODO: add animation handling for buttons when the click event handler is called
+const emit = defineEmits(['update:modelValue']);
+
+const modelValue: ModelRef<string> = defineModel<string>();
+const isChecked: ComputedRef<boolean> = computed((): boolean => {
+  return modelValue.value === props.value.valueOf();
+})
 
 function handleChange() {
-
+  if (modelValue.value !== props.value) {
+    emit('update:modelValue', props.value);
+  }
 }
 </script>
 
 <template>
   <label
-      :for="id"
+      :for="value"
   >
     <input
-        :id="id"
+        :id="value"
         :name="name"
         :value="value"
         type="radio"
@@ -31,8 +34,8 @@ function handleChange() {
         @change="handleChange"
         class="hidden"
     />
-    <motion.span class="ml-2 select-none inline-block px-2 py-2 cursor-pointer rounded-sm border-primary border"
-          :class="isChecked ?'bg-primary' : 'bg-none' ">{{ label }}</motion.span>
+    <motion.span @click="handleChange" class="ml-2 select-none inline-block px-2 py-2 cursor-pointer rounded-sm border-primary border"
+                 :class="isChecked ?'bg-primary' : 'bg-none' ">{{ value }}</motion.span>
   </label>
 </template>
 

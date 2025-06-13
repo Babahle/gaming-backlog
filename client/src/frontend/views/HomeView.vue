@@ -5,8 +5,6 @@ import GameCard from "../components/GameCard.vue";
 import {Game} from "../models/Game";
 import {Constants} from "../constants/Constants";
 import axios from "axios";
-import BaseRadioButton from "../components/BaseRadioButton.vue";
-import {Platforms} from "../enums/Platforms";
 
 let games = ref([]);
 watchEffect(async () => {
@@ -19,7 +17,6 @@ watchEffect(async () => {
   <div class="header flex flex-col items-center justify-center my-10">
     <h1 class="font-bold text-heading-1 my-4 text-primary">Own Your Gaming Journey</h1>
     <p class="">Track your progress, categorise your collection, and achieve more with every game</p>
-    <BaseRadioButton :name="Platforms.Playstation" :id="Platforms.Playstation" :isChecked="false" :label="Platforms.Playstation" :value="Platforms.Playstation"/>
   </div>
 
 
