@@ -38,6 +38,7 @@ function submitForm() {
     console.log(error);
   });
 
+	emitCloseModal();
 }
 
 </script>
