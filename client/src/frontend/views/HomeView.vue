@@ -4,11 +4,12 @@ import {ref, watchEffect} from "vue";
 import GameCard from "../components/GameCard.vue";
 import {Game} from "../models/Game";
 import {Constants} from "../constants/Constants";
+import axios from "axios";
 
 let games = ref([]);
 watchEffect(async () => {
-  const response = await fetch(Constants.API_URL);
-  games.value = await response.json();
+  const response = await axios.get(Constants.API_URL);
+  games.value = await response.data;
 });
 </script>
 
@@ -17,6 +18,7 @@ watchEffect(async () => {
     <h1 class="font-bold text-heading-1 my-4 text-primary">Own Your Gaming Journey</h1>
     <p class="">Track your progress, categorise your collection, and achieve more with every game</p>
   </div>
+
 
   <div class="flex flex-row items-start h-screen">
     <SideBar/>
@@ -29,6 +31,5 @@ watchEffect(async () => {
 </template>
 
 <style scoped>
-
 
 </style>
