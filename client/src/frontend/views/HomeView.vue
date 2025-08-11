@@ -14,9 +14,9 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div class="header flex flex-col items-center justify-center my-10">
-    <h1 class="font-bold text-heading-1 my-4 text-primary">Own Your Gaming Journey</h1>
-    <p class="">Track your progress, categorise your collection, and achieve more with every game</p>
+  <div class="header flex flex-col items-center justify-center my-10 px-4">
+    <h1 class="font-bold text-heading-3 text-center md:text-heading-1 md:my-4 text-primary">Own Your Gaming Journey</h1>
+    <p class="text-center text-body">Track your progress, categorise your collection, and achieve more with every game</p>
   </div>
 
 
