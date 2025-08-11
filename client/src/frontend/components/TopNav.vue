@@ -17,9 +17,11 @@ function toggleModal() {
 
 <template>
 
-  <div class="top-nav flex flex-row justify-between items-center px-3 py-1">
+  <div class="top-nav flex flex-row justify-between m-2 items-center  md:px-3 md:py-1">
     <Logo/>
-    <Button button-label="Add Game" :selectedColour="Colours.Secondary" @button-clicked="toggleModal"/>
+    <Button class="hidden md:block" button-label="Add Game" :selectedColour="Colours.Secondary"
+						@button-clicked="toggleModal"/>
+    <Button class="block md:hidden" button-label="+" :selectedColour="Colours.Secondary" @button-clicked="toggleModal"/>
   </div>
 
  <MotionConfig :transition="{ duration: 0.5 }">
