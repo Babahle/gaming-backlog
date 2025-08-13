@@ -14,7 +14,7 @@ function getImageUrl(): string {
 
 <template>
   <div
-      class="flex flex-col card bg-cardBackground w-[13.5rem] h-fit rounded-md hover:border hover:border-primary hover:cursor-pointer items-center">
+      class="flex flex-col card bg-cardBackground w-[16.5rem] h-fit rounded-md hover:border hover:border-primary hover:cursor-pointer items-center">
     <div class="card_aside w-full rounded-md">
       <img class="rounded-t-md w-full h-[12rem]"
            :src="getImageUrl()"/>
@@ -30,7 +30,7 @@ function getImageUrl(): string {
       </div>
     </div>
 
-    <div class="card__footer flex flex-row items-center justify-between px-4 my-2">
+    <div class="flex flex-row items-center justify-between px-4 my-2 w-full ">
       <p class="text-body text-accent">{{ gameObject.state.valueOf() }}</p>
       <Button :selected-colour="Colours.Primary" button-label="More"/>
     </div>
