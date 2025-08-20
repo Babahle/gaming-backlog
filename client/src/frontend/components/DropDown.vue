@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {motion} from "motion-v";
 
 let isOpen = ref(false);
 
@@ -29,19 +28,34 @@ function closeDropDown() {
 </script>
 
 <template>
-  <button class="bg-cardBackground p-4 rounded-md border border-primary mb-4" @click="toggleDropDown">Select Filter
-  </button>
+  <!-- Wrapper provides positioning context -->
+  <div class="relative inline-block text-left">
+    <!-- Trigger Button -->
+    <button
+        class="bg-cardBackground p-4 rounded-md border border-primary"
+        @click="toggleDropDown"
+    >
+      Select Filter
+    </button>
 
-  <motion.div :initial="{ opacity: 0, scaleY: 0 }"
-              :animate="{ opacity: 1, scaleY: 1  }"
-              v-if="isOpen" class="dropdown-menu bg-cardBackground rounded-md w-32 px-3">
-    <ul class="flex flex-col items-start text-left hover:cursor-pointer">
-      <li class="w-full py-3 hover:bg-background"
-          v-for="option in props.options"><p>{{
-          option
-        }}</p></li>
-    </ul>
-  </motion.div>
+    <!-- Dropdown Menu (appears below button) -->
+    <motion.div
+        v-if="isOpen"
+        :initial="{ opacity: 0, scaleY: 0 }"
+        :animate="{ opacity: 1, scaleY: 1 }"
+        class="absolute left-0 top-12 mt-2 w-40 origin-top bg-cardBackground rounded-md shadow-lg z-50"
+    >
+      <ul class="flex flex-col items-start text-left cursor-pointer">
+        <li
+            v-for="option in props.options"
+            :key="option"
+            class="w-full px-4 py-2 hover:bg-background rounded-md"
+        >
+          {{ option }}
+        </li>
+      </ul>
+    </motion.div>
+  </div>
 </template>
 
 <style scoped>
