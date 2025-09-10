@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import SideBar from "../components/SideBar.vue";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 import GameCard from "../components/GameCard.vue";
 import {Game} from "../models/Game";
 import DropDown from "../components/DropDown.vue";
 import {useGamesStore} from "../stores/games";
 
 const gamesStore = useGamesStore();
-let selectedFilter: string = '';
+let selectedFilter = ref('');
 
 onMounted(() => {
   gamesStore.fetchGames();
