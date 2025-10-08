@@ -25,7 +25,6 @@ onMounted(() => {
   <div class="flex flex-col items-center justify-center md:flex-row md:items-start h-screen">
     <SideBar class="hidden md:block"/>
     <DropDown class="md:hidden" v-model="selectedFilter" :options="['Playing', 'Completed', 'Not Started']"/>
-    <p>Selected Filter: {{ selectedFilter }}</p>
     <div class="games-container m-4" v-if="gamesStore.games.length > 0">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 auto-rows-auto">
         <GameCard v-for="game in gamesStore.games"
