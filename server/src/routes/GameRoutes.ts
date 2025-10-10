@@ -34,8 +34,22 @@ router.post('/', async (req: Request, res: Response) => {
     }
 })
 
-//GetGameByID
-router.put('/:id', (req, res) => {
+//GetGameByState
+/**
+ * Handles the GET request to retrieve games by their state.
+ * @param {Request} req - The Express request object containing the state as a route parameter.
+ * @param {Response} res - The Express response object.
+ * @returns {Promise<void>} - A Promise that resolves when the response is sent.
+ */
+router.get('/state/:state', async (req: Request, res: Response) => {
+    try {
+        console.log("Getting Games");
+        const games: Game[] = await GameController.getGameByState(req, res);
+        res.status(200).json(games);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({message: "Could not get games by state", error: err});
+    }
 })
 
 export default router;
