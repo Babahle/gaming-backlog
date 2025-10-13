@@ -1,6 +1,6 @@
 # Gaming Backlog
 
-A simple app to track your game collection: add games, set progress/status, filter by platform and category.
+A simple app to track your game collection: add games, set progress/status, filter by category.
 
 ## Key features
 - Add and edit games (title, platform, status)
