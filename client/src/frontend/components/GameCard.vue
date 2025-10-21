@@ -2,6 +2,10 @@
 import Button from "./Button.vue";
 import {Colours} from "../enums/Colours";
 import {Game} from "../models/Game";
+import {useGamesStore} from "../stores/games";
+
+
+const gamesStore = useGamesStore();
 
 const props = defineProps<{
   gameObject: Game
@@ -10,6 +14,12 @@ const props = defineProps<{
 function getImageUrl(): string {
   return props.gameObject.imageURL;
 }
+
+function deleteGame(gameId: string) {
+  console.log(`Deleting game: ${gameId}`);
+  gamesStore.deleteGame(gameId);
+}
+
 </script>
 
 <template>
@@ -32,7 +42,7 @@ function getImageUrl(): string {
 
     <div class="flex flex-row items-center justify-between px-4 my-2 w-full ">
       <p class="text-body text-accent">{{ gameObject.state.valueOf() }}</p>
-      <Button :selected-colour="Colours.Primary" button-label="More"/>
+      <Button @button-clicked="deleteGame(gameObject.id)" :selected-colour="Colours.Primary" button-label="Delete"/>
     </div>
   </div>
 </template>

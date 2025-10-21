@@ -36,7 +36,7 @@ export default class GameController {
      * @param res - The Express response object.
      * @returns A Promise that resolves to an array of `Game` objects.
      */
-    public static async getAllGames(req: Request, res: Response): Promise<Game[]> {
+    public static async getAllGames(req: Request, res: Response): Promise<Game[] | undefined> {
         try {
             const games = Array.from(await GameModel.find());
             return games.map(game => {
@@ -60,4 +60,21 @@ export default class GameController {
             return new Game(game.name, game.platform, game.state, game.id, game.imageURL);
         })
     }
+
+    /**
+     * Deletes a game from the database by its ID.
+     * @param req - The Express request object containing the game ID as a route parameter.
+     * @returns A Promise that resolves when the game is deleted.
+     */
+    public static async deleteGame(req: Request): Promise<void> {
+        const gameId: string = req.params.gameId;
+        if (gameId) {
+            try {
+               await GameModel.findByIdAndDelete(gameId);
+            } catch (err) {
+                console.log(`Error deleting game: ${err}`);
+            }
+        }
+    }
+
 }

@@ -25,5 +25,10 @@ export const useGamesStore = defineStore('games', () => {
         await fetchGames(filter);
     }
 
-    return {games, fetchGames, setFilter};
+    async function deleteGame(gameId: string): Promise<void> {
+        await axios.delete(`${Constants.API_URL}/games/${gameId}`);
+        await fetchGames(selectedFilter.value);
+    }
+
+    return {games, fetchGames, setFilter, deleteGame};
 });
