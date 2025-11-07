@@ -5,6 +5,7 @@ import GameCard from "../components/GameCard.vue";
 import {Game} from "../models/Game";
 import DropDown from "../components/DropDown.vue";
 import {useGamesStore} from "../stores/games";
+import {GameStates} from "../enums/GameStates";
 
 const gamesStore = useGamesStore();
 let selectedFilter = ref('');
@@ -31,11 +32,12 @@ function onFilterSelected(payload: { filter: string }) {
   </div>
 
 
-  <div class="flex flex-col items-center justify-between md:flex-row md:items-start h-screen">
+  <div class="flex flex-col items-center md:justify-between md:flex-row md:items-start h-screen w-full ">
     <SideBar @filter-selected="onFilterSelected" class="hidden md:block"/>
-    <DropDown class="md:hidden" v-model="selectedFilter" :options="['Playing', 'Completed', 'Not Started']"/>
+    <DropDown @filter-selected="onFilterSelected" class="md:hidden" v-model="selectedFilter"
+              :options="{options: Object.values(GameStates)}"/>
 
-    <div class="games-container m-4 w-full" v-if="gamesStore.games.length > 0">
+    <div class="games-container flex flex-col md:block items-center m-4 w-full" v-if="gamesStore.games.length > 0">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 auto-rows-auto">
         <GameCard v-for="game in mappedGames" :key="game.id" :game-object="game"/>
       </div>

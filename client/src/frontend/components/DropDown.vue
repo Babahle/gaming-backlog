@@ -1,26 +1,32 @@
 <script setup lang="ts">
+import {motion} from "motion-v"
 import {onBeforeUnmount, onMounted, ref} from "vue";
+import {useGamesFilterStore} from "../stores/gamesFilter";
 
 let isOpen = ref(false);
 const root = ref<HTMLElement | null>(null);
+const selectedOption = defineModel({required: true});
+const filterStore = useGamesFilterStore();
 
 
 const props = defineProps<{
   options: {
-    type: Array<string>,
-    required: true,
-  },
-  modelValue: {
-    type: string
-  },
+    options: Array<string>
+  }
 }>()
 
-const emit = defineEmits(['update:modelValue']);
+const emits = defineEmits<{
+  (e: 'filterSelected', payload: { filter: string }): void;
+}>();
 
 
-function selectOption(selectedOption) {
+
+function selectOption(selectedItem: string) {
+  if(!selectedItem) return;
   isOpen.value = false;
-  emit('update:modelValue', selectedOption);
+  filterStore.setSelectedFilter(selectedItem);
+  selectedOption.value = selectedItem;
+  emits('filterSelected', { filter: selectedItem });
 }
 
 function toggleDropDown() {
@@ -29,7 +35,6 @@ function toggleDropDown() {
 
 function closeDropDown() {
   isOpen.value = false;
-
 }
 
 // Click outside handler
@@ -61,13 +66,13 @@ onBeforeUnmount(() => {
 
 <template>
   <!-- Wrapper provides positioning context -->
-  <div ref="root" class="relative inline-block text-left">
+  <div ref="root" class="relative inline-block text-left hover:cursor-pointer">
     <!-- Trigger Button -->
     <button
         class="bg-cardBackground p-4 rounded-md border border-primary"
         @click="toggleDropDown"
     >
-      Select Filter
+      {{ selectedOption || 'Select Filter' }}
     </button>
 
     <!-- Dropdown Menu (appears below button) -->
@@ -79,7 +84,7 @@ onBeforeUnmount(() => {
     >
       <ul class="flex flex-col items-start text-left cursor-pointer">
         <li
-            v-for="option in props.options"
+            v-for="option in props.options.options"
             :key="option"
             class="w-full px-4 py-2 hover:bg-background rounded-md"
             @click="selectOption(option)"
