@@ -7,8 +7,9 @@ export class Game {
     public platform: Platforms;
     public state: GameStates;
     public imageURL: string;
+    public id?: string;
 
-    constructor(name: string, platform: Platforms, state: GameStates, imageURL: string) {
+    constructor(name: string, platform: Platforms, state: GameStates, imageURL: string, id?: string) {
         if (imageURL) {
             this.imageURL = imageURL;
         } else {
@@ -17,5 +18,6 @@ export class Game {
         this.name = name;
         this.platform = platform;
         this.state = state;
+        this.id = id;
     }
 }

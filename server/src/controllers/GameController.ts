@@ -36,7 +36,7 @@ export default class GameController {
      * @param res - The Express response object.
      * @returns A Promise that resolves to an array of `Game` objects.
      */
-    public static async getAllGames(req: Request, res: Response): Promise<Game[]> {
+    public static async getAllGames(req: Request, res: Response): Promise<Game[] | undefined> {
         try {
             const games = Array.from(await GameModel.find());
             return games.map(game => {
@@ -48,32 +48,38 @@ export default class GameController {
     }
 
     /**
-     * Retrieves a game from the database.
-     * @param req - The Express request object.
+     * Retrieves games from the database filtered by state.
+     * @param req - The Express request object containing the platform as a route parameter.
      * @param res - The Express response object.
-     * @returns A Promise that resolves to the Express response.
+     * @returns A Promise that resolves to an array of `Game` objects filtered by the specified state.
      */
-    public static async getGame(req: Request, res: Response): Promise<Response> {
-        return undefined;
+    public static async getGameByState(req: Request, res: Response): Promise<Game[]> {
+        const state: string = req.params.state;
+        try {
+            const games = Array.from(await GameModel.find({state: state}));
+            return games.map(game => {
+                return new Game(game.name, game.platform, game.state, game.id, game.imageURL);
+            });
+        } catch (err) {
+            console.log(`Error getting games by state: ${err}`);
+            return [];
+        }
     }
 
     /**
-     * Updates a game in the database.
-     * @param req - The Express request object.
-     * @param res - The Express response object.
-     * @returns A Promise that resolves to the Express response.
+     * Deletes a game from the database by its ID.
+     * @param req - The Express request object containing the game ID as a route parameter.
+     * @returns A Promise that resolves when the game is deleted.
      */
-    public static async updateGame(req: Request, res: Response): Promise<Response> {
-        return undefined;
+    public static async deleteGame(req: Request): Promise<void> {
+        const gameId: string = req.params.gameId;
+        if (gameId) {
+            try {
+               await GameModel.findByIdAndDelete(gameId);
+            } catch (err) {
+                console.log(`Error deleting game: ${err}`);
+            }
+        }
     }
 
-    /**
-     * Deletes a game from the database.
-     * @param req - The Express request object.
-     * @param res - The Express response object.
-     * @returns A Promise that resolves to the Express response.
-     */
-    public static async deleteGame(req: Request, res: Response): Promise<Response> {
-        return undefined;
-    }
 }

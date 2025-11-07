@@ -1,6 +1,7 @@
 export enum GameStates {
-    "NotStarted" = "NotStarted",
-    "InProgress" = "InProgress",
-    "Finished" = "Finished",
-    "Dropped" = "Dropped",
+    All = "All",
+    NotStarted = "Not Started",
+    InProgress = "In Progress",
+    Finished = "Finished",
+    Dropped = "Dropped"
 }
