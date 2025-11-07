@@ -16,6 +16,7 @@ function getImageUrl(): string {
 }
 
 function deleteGame(gameId: string) {
+  if (!gameId) return;
   console.log(`Deleting game: ${gameId}`);
   gamesStore.deleteGame(gameId);
 }
@@ -42,7 +43,7 @@ function deleteGame(gameId: string) {
 
     <div class="flex flex-row items-center justify-between px-4 my-2 w-full ">
       <p class="text-body text-accent">{{ gameObject.state.valueOf() }}</p>
-      <Button @button-clicked="deleteGame(gameObject.id)" :selected-colour="Colours.Primary" button-label="Delete"/>
+      <Button  v-if="gameObject.id" @button-clicked="deleteGame(gameObject.id)" :selected-colour="Colours.Primary" button-label="Delete"/>
     </div>
   </div>
 </template>

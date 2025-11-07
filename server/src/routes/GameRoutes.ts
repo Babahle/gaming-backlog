@@ -55,6 +55,7 @@ router.delete('/games/:gameId', async (req: Request, res: Response): Promise<voi
     try {
         console.log("Deleting Game");
         await GameController.deleteGame(req);
+        res.status(200).json({message: 'Game deleted successfully'})
     } catch (e) {
         console.log(e);
         res.status(500).send({message: "Could not delete Game", error: e});

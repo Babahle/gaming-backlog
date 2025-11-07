@@ -48,17 +48,22 @@ export default class GameController {
     }
 
     /**
-     * Retrieves games from the database filtered by platform.
+     * Retrieves games from the database filtered by state.
      * @param req - The Express request object containing the platform as a route parameter.
      * @param res - The Express response object.
-     * @returns A Promise that resolves to an array of `Game` objects filtered by the specified platform.
+     * @returns A Promise that resolves to an array of `Game` objects filtered by the specified state.
      */
     public static async getGameByState(req: Request, res: Response): Promise<Game[]> {
         const state: string = req.params.state;
-        const games = Array.from(await GameModel.find({state: state}));
-        return games.map(game => {
-            return new Game(game.name, game.platform, game.state, game.id, game.imageURL);
-        })
+        try {
+            const games = Array.from(await GameModel.find({state: state}));
+            return games.map(game => {
+                return new Game(game.name, game.platform, game.state, game.id, game.imageURL);
+            });
+        } catch (err) {
+            console.log(`Error getting games by state: ${err}`);
+            return [];
+        }
     }
 
     /**
