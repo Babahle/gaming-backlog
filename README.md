@@ -10,7 +10,7 @@ A simple app to track your game collection: add games, set progress/status, filt
 - Node/Express backend with MongoDB persistence
 
 ## Tech stack
-- Frontend: Vue 3, TypeScript, Tailwind CSS, Pinia, Vue Router
+- Frontend: Vue 3, TypeScript, Tailwind CSS, Pinia
 - Backend: Node.js, Express, MongoDB
 
 ## Quick start
